@@ -1,0 +1,254 @@
+<html>
+<head>
+ <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+ <script src="jquery-ui/external/jquery/jquery.js"></script>
+ <script src="jquery-ui/jquery-ui.js"></script>
+<style type = "text/css">
+
+  body{
+    margin: 0;
+    padding: 0;
+  }
+
+  button{
+    float: left;
+    margin: 3px 0px 3px 0px;
+    height: 34px;
+    padding: 5px;
+    //background-color: #E8F2FF;hover
+    background-color:#EDEDED;
+    border:1px grey solid;
+  }
+
+  iframe{
+      padding:0;
+      margin:0;
+      border:0px grey solid;
+  }
+
+  #tab{
+    width: 100%;
+    height: 40px;
+    background-color: #EDEDED;
+    border-left:1px black solid;
+  }
+
+  #title{
+    margin-top: 7px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 22px;
+    width: 200px;
+    height: 33px;
+    float:left;
+  }
+
+  #menu{
+    width: 500px;
+    margin: 0 auto;
+    height: 40px;
+  }
+
+  #html_window{
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 94%;
+    display: none;
+  }
+
+  #css_window{
+    float: left;
+    margin:0;
+    padding:0;
+    width: 100%;
+    height: 94%;
+    display: none;
+  }
+
+  #js_window{
+    float: left;
+    margin:0;
+    padding:0;
+    width: 100%;
+    height: 94%;
+    display: none;
+  }
+
+  #output_window{
+    float: left;
+    margin:0;
+    padding:0;
+    width: 100%;
+    height: 94%;
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <div id = "tab">
+    <span id = "title">Web-Dep</span>
+    <div id = "menu">
+      <button id = "html_button" style = "border-radius: 5px 0px 0px 5px">HTML</button>
+      <button id = "css_button">CSS</button>
+      <button id = "js_button">JavaScript</button>
+      <button id = "console_buttton">Console</button>
+      <button id = "output_button" style = "border-radius: 0px 5px 5px 0px">Output</button>
+    </div>
+  </div>
+  <div id = "html_section">
+    <textarea id = "html_window">Html</textarea>
+    <textarea id = "css_window" class = "resize">Css</textarea>
+    <textarea id = "js_window">js</textarea>
+    <iframe id = "output_window">Output</iframe>
+   </div>
+    <script type = "text/javascript">
+
+      html = 0;
+      css = 0;
+      js = 0;
+      output  =0;
+      tot = 0;
+      width = "100%";
+      function sec_manage(){
+        tot = html+css+js+output;
+        if(tot == 1){
+          width = "100%";
+        }
+        if(tot == 2)
+        {
+          width = "50%";
+        }
+        if(tot == 3){
+          width = "33%";
+        }
+        if(tot == 4){
+          width = "25%";
+        }
+      }
+      function width_manage(){
+        sec_manage();
+        tot = 0;
+        if(html == 1){
+          $("#html_window").css("width",width);
+          $("#html_window").css("display","block");
+          $("#html_button").css("background-color","#E8F2FF");
+        }
+        else{
+          $("#html_window").css("display","none");
+          $("#html_button").css("background-color","#EDEDED");
+        }
+
+        if(css == 1){
+          $("#css_window").css("width",width);
+          $("#css_window").css("display","block");
+          $("#css_button").css("background-color","#E8F2FF");
+        }
+        else{
+          $("#css_window").css("display","none");
+          $("#css_button").css("background-color","#EDEDED");
+        }
+
+        if(js == 1){
+          $("#js_window").css("width",width);
+          $("#js_window").css("display","block");
+          $("#js_button").css("background-color","#E8F2FF");
+        }
+        else{
+          $("#js_window").css("display","none");
+          $("#js_button").css("background-color","#EDEDED");
+        }
+
+        if(output == 1){
+          $("#output_window").css("width",width);
+          $("#output_window").css("display","block");
+          $("#output_button").css("background-color","#E8F2FF");
+        }
+        else{
+          $("#output_window").css("display","none");
+          $("#output_button").css("background-color","#EDEDED");
+        }
+
+      }
+
+      $("button").hover(function(){
+        $(this).css("background-color","grey");
+      },function(){
+        $(this).css("background-color","#EDEDED");
+        if(html == 1){
+        $("#html_button").css("background-color","#E8F2FF");
+        }
+        if(css == 1){
+          $("#css_button").css("background-color","#E8F2FF");
+        }
+        if(js == 1){
+          $("#js_button").css("background-color","#E8F2FF");
+        }
+        if(output == 1){
+          $("#output_button").css("background-color","#E8F2FF");
+        }
+
+      });
+
+      $("#html_button").click(function(){
+        if(html == 0){
+          html = 1;
+          width_manage();
+        }
+        else{
+          $("#html_window").css("display","none");
+          html = 0;
+        }
+      });
+
+      $("#css_button").click(function(){
+        if(css == 0){
+          css = 1;
+        }
+        else{
+          $("#css_window").css("display","none");
+          css = 0;
+        }
+        width_manage();
+      });
+
+      $("#js_button").click(function(){
+        if(js == 0){
+          js = 1;
+        }
+        else{
+          $("#js_window").css("display","none");
+          js = 0;
+        }
+        width_manage();
+      });
+
+      $("#output_button").click(function(){
+        if(output == 0){
+          output = 1;
+        }
+        else{
+          $("#output_window").css("display","none");
+          output = 0;
+        }
+        width_manage();
+      });
+
+      function update_output(){
+          $("#output_window").contents().find("html").html("<html><head><style type='text/css'>"+$("#css_window").val()+"</style></head><body>"+$("#html_window").val()+"</body></html>");
+          document.getElementById("output_window").contentWindow.eval($("#js_window").val());//gets the js from js_window and evaluates it using eval and uses it's output over
+      }                                                                                      //output window's content
+
+      $("#html_window").on("change keyup paste",function(){
+         update_output();
+      });
+      $("#css_window").on("change keyup paste",function(){
+          update_output();
+      });
+      $("#js_window").on("change keyup paste",function(){
+          update_output();
+      });
+    </script>
+</body>
+</html>
