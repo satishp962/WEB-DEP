@@ -8,3 +8,6 @@ Jquery file linked to the webpage is provided along with the html document of th
 
 -Console window is disabled as it's application on the Iframe is out of scope currently.
 Any ideas on it's implementation are welcome:)
+
+# Screenshot
+![app screenshot](screenshot.jpg)
